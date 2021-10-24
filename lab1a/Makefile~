@@ -1,0 +1,8 @@
+default: simpsh
+
+simpsh: laba.c
+	gcc -g -std=c11 -Wall -o simpsh lab1a.c
+
+
+dist:
+	tar -cvzf lab1-605147145.tar.gz simpsh.c Makefile README

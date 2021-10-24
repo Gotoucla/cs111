@@ -1,0 +1,12 @@
+NAME: Meiyi Zheng
+EMAIL: meiyizheng@g.ucla.edu
+ID: 605147145
+
+lab3b.py:
+A Python program that extract the data from a EXT2 csv file and analyze any inconsisent and invalid information.
+
+Makefile:
+Build the program and run the program. It includes three feature: default, dist, clean
+
+README:
+The file includes the description of all file in the tarball. 

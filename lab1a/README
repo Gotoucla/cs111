@@ -1,0 +1,21 @@
+NAME: Meiyi Zheng
+EMAIL: meiyizheng@g.ucla.edu
+ID: 605147145
+
+simpsh.c:
+I implement 4 options in this C source file.
+--rdonly input_file: open the file descriptor with flag read only
+--wronly output_file: open the file descriptor with flag write only
+--command argument: fork a child process to implement the shell command
+--verbose: output the option and arguments to the stdout
+
+Makefile:
+default: builds simpsh executable 
+dist: build a distribution tarball
+clean: deletes the files created by the Makefile
+check: runs the test cases to verify the output
+
+test cases:
+readAndWrite: check the exit code with correct input --rdonly and --wronly
+command: check the exit code with correct input --rdonly, --wronly and --command
+verbose: check whether it outputs all the options and arguments with --verbose

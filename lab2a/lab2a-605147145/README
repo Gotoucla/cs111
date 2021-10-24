@@ -1,0 +1,75 @@
+NAME: Meiyi Zheng
+EMAIL: meiyizheng@g.ucla.edu
+ID: 605147145
+
+File Description:
+
+lab2_add.c: a C program that implements and tests a shared variable add function.
+lab2_list.c: a C program that implements and tests a circular linked list.
+SortedList.h: a header file describing the interfaces for linked list operations.
+SortedList.c: a C module that implements insert, delete, lookup and length methods for a sorted linked list.
+Makefile: a makefile to build the deliverable program, output, graphs, and tarball. The targets are: build, tests, graphs, dist, clean.
+lab2_add.csv: contaning all of the results for all of the Part-1 tests.
+lab2_list.csv: contaning all of the results for all of the Part-2 tests.
+graphs(.png files):
+For part 1 (lab2_add):
+lab2_add-1.png ... threads and iterations required to generate a failure (with and without yields)
+lab2_add-2.png ... average time per operation with and without yields.
+lab2_add-3.png ... average time per (single threaded) operation vs. the number of iterations.
+lab2_add-4.png ... threads and iterations that can run successfully with yields under each of the synchronization options.
+lab2_add-5.png ... average time per (protected) operation vs. the number of threads.
+For part 2 (lab2_list):
+lab2_list-1.png ... average time per (single threaded) unprotected operation vs. number of iterations (illustrating the correction of the per-operation cost for the list length).
+lab2_list-2.png ... threads and iterations required to generate a failure (with and without yields).
+lab2_list-3.png ... iterations that can run (protected) without failure.
+lab2_list-4.png ... (length-adjusted) cost per operation vs the number of threads for the various synchronization options.
+README: a file containnig the file descriptions and answers to the questions.
+
+
+Question and Answer:
+
+QUESTION 2.1.1 - causing conflicts:
+Why does it take many iterations before errors are seen?
+Why does a significantly smaller number of iterations so seldom fail?
+
+Answer: If we have fewer iterations, say 100, the time for a thread to finish all of these iterations is less than the time to create a new thread. The time ranges used by two threads are not overlapped, so the conflics selodom happen.
+
+QUESTION 2.1.2 - cost of yielding:
+Why are the --yield runs so much slower?
+Where is the additional time going?
+Is it possible to get valid per-operation timings if we are using the --yield option?
+If so, explain how. If not, explain why not.
+
+Answer: The --yield runs slower because if we call sche_yield(), the OS will make a context switch to another thread, which will create context switch overhead.
+
+No. The time we get for each thread is wall time, and also contains the context switch overhead we spent in the yield. It's impossible to get the eact per-operation timings.
+
+QUESTION 2.1.3 - measurement errors:
+Why does the average cost per operation drop with increasing iterations?
+If the cost per iteration is a function of the number of iterations, how do we know how many iterations to run (or what the "correct" cost is)?
+
+Answer: For a thread, as the iteration increase, the portion of the overhead of context switch and creation of threads decrease.
+
+The second plot decrease exponentially for cost of operation per iteration. The point at which the asymptot/stable state, should be the ideal number of iterations.
+
+QUESTION 2.1.4 - costs of serialization:
+Why do all of the options perform similarly for low numbers of threads?
+Why do the three protected operations slow down as the number of threads rises?
+
+Answer: If the threads number are small, there will be fewer threads competing for one resource, there will also fewer context switch happen, the time spent on each thread is almost the same.
+
+For more threads, there is a higher change to get into race condition. There will be more threads waiting for the same lock, more time will be spent on lock waiting.
+
+QUESTION 2.2.1 - scalability of Mutex
+Compare the variation in time per mutex-protected operation vs the number of threads in Part-1 (adds) and Part-2 (sorted lists).
+Comment on the general shapes of the curves, and explain why they have this shape.
+Comment on the relative rates of increase and differences in the shapes of the curves, and offer an explanation for these differences.
+
+Answer: In both graphs, the time per mutex-protected operation increase as the number of threads increase. But the add graphs eventually flattens, and the list graphs keep increasing. THe difference is because the linked list lock were held longer.
+
+QUESTION 2.2.2 - scalability of spin locks
+
+Compare the variation in time per protected operation vs the number of threads for list operations protected by Mutex vs Spin locks. Comment on the general shapes of the curves, and explain why they have this shape.
+Comment on the relative rates of increase and differences in the shapes of the curves, and offer an explanation for these differences.
+
+Answer: Spin lock will cost less with fewer threads. But as the thread number increase, spin lock keep checking before entering the critical section. For mutex, it just put to sleep, so it doesn't use CPU time. 

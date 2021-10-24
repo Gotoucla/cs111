@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<getopt.h>
+#include<string.h>
+#include<errno.h>
+#include<fcntl.h>
+#include<errno.h>
+#include<sys/types.h>
+#include<unistd.h>
+#include<signal.h>
+#include<sys/wait.h>
+
+int main(int argc, char * argv[]) {
+  int opt = 0;
+  int option_index = 0;
+  char *string = "c:";
+  
+  static struct option long_options[] = {
+					
+       
+					 {"command", required_argument, NULL, 'c'},
+					 {0, 0, 0,  0}
+  };
+
+  while(1) {
+    opt = getopt_long(argc, argv, string, long_options, &option_index);
+
+    if (opt == -1)
+      break;
+
+     switch (opt) {
+     case 'c':
+        optind--;
+      
+      int command_begin = optind;
+      int in = atoi(argv[command_begin++]);
+      //printf("input: %i\n", in);
+      int o = atoi(argv[command_begin++]);
+      //printf("output: %i\n", o);
+      int e = atoi(argv[command_begin++]);
+      //printf("error: %i\n", e);
+
+      char *command = argv[command_begin++];
+      //printf("command: %s\n", command);
+
+      int index = command_begin;
+
+      int i=0;
+      char *argument[10];
+
+      
+      while( index < argc && (argv[index][0] !='-' || argv[index][1] != '-')) {
+	//if (argv[index][0] == '-')
+	//optind = index + 1;
+	argument[i++] = argv[index++];
+	//fprintf(stdout,"argument: %s\n", argument[i]);
+      }
+     
+      argument[i] = NULL;
+      optind += i;
+      optind += 4;

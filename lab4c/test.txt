@@ -1,0 +1,31 @@
+ID=375000000
+
+LOG 12/01/19 13:28:44: session started, ID=375000000
+START
+21:28:49 7.0
+LOG newline not last character of report
+21:28:54 7.0
+LOG newline not last character of report
+PERIOD=7
+21:29:01 7.0
+LOG newline not last character of report
+SCALE=C
+21:29:08 7.0
+LOG newline not last character of report
+SCALE=F
+21:29:15 44.6
+21:29:22 44.6
+PERIOD=3
+21:29:26 44.7
+21:29:29 44.6
+21:29:32 44.6
+21:29:35 44.7
+21:29:38 44.6
+21:29:41 44.7
+21:29:44 44.7
+21:29:47 44.7
+21:29:50 44.7
+21:29:53 44.7
+STOP
+OFF
+21:29:55 SHUTDOWN

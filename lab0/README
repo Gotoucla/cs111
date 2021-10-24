@@ -1,0 +1,39 @@
+NAME: Meiyi Zheng
+EMAIL: meiyizheng@yahoo.com
+ID: 605147145
+
+lab0.c:
+This C source code copies the standard input to its standard output. It includes 5 options: --input, --output, --segfault, --catch, --dump-core.
+
+Makefile:
+To build the program and the make the check.
+
+backtrace.png:
+It shows a segfault and associated stack-trace.
+
+breakpoint.png:
+It shows a breakpoint and variable inspection.
+
+README:
+A file with identification information, a description of the included files, the smoke-test cases in the check target, and any research information.
+
+The smoke-test cases:
+
+inputAndOutput:
+This test verifies that the content of output file is the same as the input file, to make sure that the copy function works.
+
+inputWrong:
+This test checks the exit code 2 when the input file can't open.
+
+outputWrong:
+This test checks the exit code 3 when the output file can't be written.
+
+catchAndSegfault:
+This test checks the exit code 4 when a segumentation fault occurs and then be caught.
+
+invalidArg:
+This test checks the exit code 1 when a invalid argument is entered.
+
+dumpCore:
+This test checks the exit code 139 when a dump core occurs.
+
